@@ -7,18 +7,26 @@ from scipy.sparse.linalg import svds
 import matplotlib.pyplot as plt
 
 # read team data for a given year
-df = pd.read_csv('team_data_17_18.csv', nrows=30)
+df = pd.read_csv('team_data_13_14.csv', nrows=30)
 
 # add a column of whether team made playoff
-df['Playoff'] = ' '
-i = 0
+# df['Playoff'] = ' '
+# i = 0
+#
+# for team in df['Team']:
+# 	df.at[i,'Playoff'] = "Y" if '*' in team else "N"
+# 	df.at[i,'Team'] = str(df.at[i,'Team']).replace('*','')
+# 	i += 1
 
-for team in df['Team']:
-	df.at[i,'Playoff'] = "Y" if '*' in team else "N"
-	df.at[i,'Team'] = str(df.at[i,'Team']).replace('*','')
-	i += 1
+for index, team in enumerate(df['Team']):
+	if team == 'Charlotte Bobcats':
+		df.at[index, 'Team'] = 'Charlotte Hornets'
+	if team == 'New Jersey Nets':
+		df.at[index, 'Team'] = 'Brooklyn Nets'
+	if team == 'New Orleans Hornets':
+		df.at[index, 'Team'] = 'New Orleans Pelicans'
 
-df.to_csv("team_data_17_18.csv", index= False, float_format='%g')
+df.to_csv("team_data_13_14.csv", index= False, float_format='%g')
 # plot team based on two features; playoff in red; not playoff in blue
 # n=0
 # for team in df['Playoff']:
