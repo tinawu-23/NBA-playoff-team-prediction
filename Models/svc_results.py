@@ -19,8 +19,16 @@ if __name__ == '__main__':
 	teamData = pd.read_csv('../team_data/teamFiles.csv')
 	exclusions = [None]
 	exclusions += list(range(0,23))
+	d = {}
+
+	years = []
+	for i in range(0,9):
+		years.append(str(i+9) + "to" + str(i+10))
+	d["Testing Data Season"] = years
+
 	for exclude in exclusions:
-		print(exclude)
+		#print(exclude)
+		f1 = []
 		for index, year in teamData.iterrows():
 			train_data, train_label = extractData(year["Year1"], exclude)	
 			test_data, test_label = extractData(year["Year2"], exclude)
@@ -31,6 +39,12 @@ if __name__ == '__main__':
             #print(eval.getAccuracy())
             #print(eval.getPrecision())
             #print(eval.getRecall())
-			print(eval.getF1())
+			f1.append(round(eval.getF1(),5))
             #print("------------------------------")
-            #
+			if exclude is None:
+				d["None"] = f1
+			else:
+				d[exclude] = f1
+	table = pd.DataFrame(d)
+	
+	table.to_csv('f1_svc.csv', sep=',', index=False)
