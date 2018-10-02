@@ -4,9 +4,13 @@ import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 from evaluations import Evaluation
 
-def extractData(fileName):
+def extractData(fileName, exclude):
     df = pd.read_csv("../team_data/" + fileName)
-    data = df[df.columns[2:25]]
+    columnsSelected = list(df.columns.values)
+    columnsSelected = columnsSelected[2:25]
+    if exclude is not None:
+        columnsSelected.pop(exclude)
+    data = df.loc[:, list(columnsSelected)]
     labels = df["Playoff"]
     return data, labels
 
@@ -14,16 +18,20 @@ def extractData(fileName):
 if __name__ == '__main__':
     # read team data for a given year
     teamData = pd.read_csv('../team_data/teamFiles.csv')
+    exclusions = [None]
+    exclusions += list(range(0,23))
+    for exclude in exclusions:
+        print(exclude)
+        for index, year in teamData.iterrows():
 
-    for index, year in teamData.iterrows():
-        train_data, train_label = extractData(year["Year1"])
-        test_data, test_label = extractData(year["Year2"])
-        gnb = GaussianNB()
-        y_pred = gnb.fit(train_data,train_label)
-        predictions = gnb.predict(test_data)
-        eval= Evaluation(predictions, test_label)
-        print(eval.getAccuracy())
-        print(eval.getPrecision())
-        print(eval.getRecall())
-        print(eval.getF1())
-        print("------------------------------")
+            train_data, train_label = extractData(year["Year1"], exclude)
+            test_data, test_label = extractData(year["Year2"], exclude)
+            gnb = GaussianNB()
+            y_pred = gnb.fit(train_data,train_label)
+            predictions = gnb.predict(test_data)
+            eval= Evaluation(predictions, test_label)
+            # print(eval.getAccuracy())
+            # print(eval.getPrecision())
+            # print(eval.getRecall())
+            # print(eval.getF1())
+            # print("------------------------------")
