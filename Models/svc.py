@@ -21,7 +21,7 @@ if __name__ == '__main__':
     exclusions += list(range(0,23))
     for exclude in exclusions:
         print(exclude)
-        for index, year in teamData.iterrows():
+       	for index, year in teamData.iterrows():
             train_data, train_label = extractData(year["Year1"], exclude)
             test_data, test_label = extractData(year["Year2"], exclude)
             clf = svm.SVC()

@@ -20,7 +20,6 @@ if __name__ == '__main__':
 	exclusions = [None]
 	exclusions += list(range(0,23))
 	d = {}
-
 	years = []
 	for i in range(0,9):
 		years.append(str(i+9) + "to" + str(i+10))
