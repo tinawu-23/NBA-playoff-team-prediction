@@ -19,10 +19,10 @@ if __name__ == '__main__':
 	teamData = pd.read_csv('../team_data/teamFiles.csv')
 	exclusions = [None]
 	exclusions += list(range(0,23))
-	d = {}
+	d = {} #will be converted to dataframe
 	years = []
 	for i in range(0,9):
-		years.append(str(i+9) + "to" + str(i+10))
+		years.append(str(i+9) + "to" + str(i+10)) #add year column
 	d["Testing Data Season"] = years
 
 	for exclude in exclusions:
@@ -43,7 +43,7 @@ if __name__ == '__main__':
 			if exclude is None:
 				d["None"] = f1
 			else:
-				d[exclude] = f1
+				d[exclude] = f1 #f1 scores for each feature for a given year
 	table = pd.DataFrame(d)
 	
 	table.to_csv('f1_svc.csv', sep=',', index=False)
