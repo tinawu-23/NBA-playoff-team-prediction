@@ -28,6 +28,6 @@ def analysis(filename):
 	sorted_diffdict = sorted(diffdict.items(), key=operator.itemgetter(1))
 	print(sorted_diffdict)
 
-# analysis('f1_cart.csv')
-# analysis('f1_gnb.csv')
+analysis('f1_cart.csv')
+analysis('f1_gnb.csv')
 analysis('f1_svc.csv')
