@@ -23,7 +23,7 @@ def extractData(fileName, exclude):
 if __name__ == '__main__':
     # read team data for a given year
 	teamData = pd.read_csv('../../../team_data/teamFiles.csv')
-	dummy_exclude = [3, 5, 2, 7, 10, 14, 11, 1, 0, 6]
+	dummy_exclude = [3, 1, 2, 8, 15, 4, 7, 10, 13, 5, 11, 9, 12, 14, 6, 0]
 	exclusions = list()
 	d = {} #will be converted to dataframe
 	years = []
@@ -41,11 +41,7 @@ if __name__ == '__main__':
 			y_pred = clf.fit(train_data,train_label)
 			predictions = clf.predict(test_data)
 			eval= Evaluation(predictions, test_label)
-            #print(eval.getAccuracy())
-            #print(eval.getPrecision())
-            #print(eval.getRecall())
 			f1.append(round(eval.getF1(),5))
-			print("hmmmmmmm")
 			if exclude is None:
 				d["None"] = f1
 			else:
