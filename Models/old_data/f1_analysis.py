@@ -22,9 +22,9 @@ def analysis(filename):
 	df.loc[df.shape[0],'Testing Data Season'] = 'Average Difference'
 	for i in range(len(lst)):
 		df.iloc[9,i+2] = lst[i]
-	print(df)
-	new_file = "new_"+filename
-	df.to_csv(new_file, index= False, float_format='%g')
+	#print(df)
+	#new_file = "new_"+filename
+	#df.to_csv(new_file, index= False, float_format='%g')
 	sorted_diffdict = sorted(diffdict.items(), key=operator.itemgetter(1))
 	print(sorted_diffdict)
 
