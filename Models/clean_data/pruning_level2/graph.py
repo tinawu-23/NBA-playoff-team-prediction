@@ -16,8 +16,9 @@ for i in range(0, len(colors)):
             plt.scatter(j, points[i][j][1], c=colors[i], label=labels[i])
         else:
             plt.scatter(j, points[i][j][1], c=colors[i])
-
-plt.xlabel("k features included")
-plt.ylabel("F1 score")
-plt.legend()
-plt.show()
+	
+    plt.xlabel("k features included")
+    plt.ylabel("F1 score")
+    plt.title(labels[i])
+    plt.legend()
+    plt.show()
