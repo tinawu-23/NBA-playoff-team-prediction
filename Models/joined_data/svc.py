@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
+from sklearn import svm
 import sys
 sys.path.insert(0, '../clean_data/')
 from evaluations import Evaluation
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     # read team data for a given year
 	teamData = pd.read_csv('teamFiles.csv')
 	exclusions = [None]
-	exclusions += list(range(0,21))
+	exclusions += list(range(0,22))
 	d = {} #will be converted to dataframe
 	years = []
 	for i in range(0,9):
@@ -35,22 +35,19 @@ if __name__ == '__main__':
 		for index, year in teamData.iterrows():
 			train_data, train_label = extractData(year["Year1"], year["Misc1"], exclude)
 			test_data, test_label = extractData(year["Year2"], year["Misc2"], exclude)
-			clf = DecisionTreeClassifier()
+			clf = svm.SVC()
 			y_pred = clf.fit(train_data,train_label)
 			predictions = clf.predict(test_data)
-			# print(predictions)
-			# print(test_label)
 			eval= Evaluation(predictions, test_label)
-	# 		# print(eval.getAccuracy())
-	# 		# print(eval.getPrecision())
-	# 		# print(eval.getRecall())
-	# 		# print(eval.getF1())
-			f1.append(round(eval.getF1(), 5))
+            #print(eval.getAccuracy())
+            #print(eval.getPrecision())
+            #print(eval.getRecall())
+			f1.append(round(eval.getF1(),5))
+            #print("------------------------------")
 			if exclude is None:
 				d["None"] = f1
 			else:
 				d[exclude] = f1 #f1 scores for each feature for a given year
-
 	table = pd.DataFrame(d)
 
-	table.to_csv('f1_cart1.csv', sep=',', index=False)
+	table.to_csv('f1_svc.csv', sep=',', index=False)
