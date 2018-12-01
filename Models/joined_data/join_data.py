@@ -27,6 +27,4 @@ def join_data(teamFileName, miscFileName, salaryFileName):
 		if not row.empty:
 			salary = row.iloc[0]["Total Salary"]
 			dfJoined.at[index,"Total Salary"] = salary
-	print(dfJoined)
-
-join_data("team_data_08_09.csv", "misc08-09.csv", "NBA_Salary_History.csv")
+	return dfJoined

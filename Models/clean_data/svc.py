@@ -46,4 +46,4 @@ if __name__ == '__main__':
 				d[exclude] = f1 #f1 scores for each feature for a given year
 	table = pd.DataFrame(d)
 
-	table.to_csv('f1_svc.csv', sep=',', index=False)
+	table.to_csv('f1_svc1.csv', sep=',', index=False)

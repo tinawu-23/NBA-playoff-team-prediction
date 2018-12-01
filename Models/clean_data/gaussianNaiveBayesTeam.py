@@ -44,7 +44,7 @@ if __name__ == '__main__':
 			if exclude is None:
 				d["None"] = f1
 			else:
-				d[exclude] = f1 #f1 scores for each feature for a given year 
+				d[exclude] = f1 #f1 scores for each feature for a given year
 
 	table = pd.DataFrame(d)
 
