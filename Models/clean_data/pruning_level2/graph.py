@@ -12,11 +12,11 @@ points = [cart, gnb, svc]
 
 for i in range(0, len(colors)):
     for j in range(0,16):
-        if j == 15:
-            plt.scatter(j, points[i][j][1], c=colors[i], label=labels[i])
-        else:
+        # if j == 15:
+        #     plt.scatter(j, points[i][j][1], c=colors[i], label=labels[i])
+        # else:
             plt.scatter(j, points[i][j][1], c=colors[i])
-	
+
     plt.xlabel("k features included")
     plt.ylabel("F1 score")
     plt.title(labels[i])
