@@ -1,24 +1,29 @@
 #!/usr/bin/env python3
 
 import pandas as pd
-from sklearn import svm
+from sklearn.naive_bayes import GaussianNB
+import sys
+sys.path.insert(0, '../clean_data/')
 from evaluations import Evaluation
+from join_data import join_data
 
-def extractData(fileName, exclude):
-	df = pd.read_csv("../../team_data/" + fileName)
+def extractData(teamFileName, miscFileName, exclude):
+	df = join_data(teamFileName, miscFileName, "NBA_Salary_History.csv")
+	labels = df["Playoff"]
+	df.drop('Playoff', axis=1, inplace=True)
 	columnsSelected = list(df.columns.values)
-	columnsSelected = columnsSelected[2:18]
+	columnsSelected = columnsSelected[1:23]
 	if exclude is not None:
 		columnsSelected.pop(exclude)
 	data = df.loc[:, list(columnsSelected)]
-	labels = df["Playoff"]
 	return data, labels
+
 
 if __name__ == '__main__':
     # read team data for a given year
-	teamData = pd.read_csv('../../team_data/teamFiles.csv')
+	teamData = pd.read_csv('teamFiles.csv')
 	exclusions = [None]
-	exclusions += list(range(0,16))
+	exclusions += list(range(0,22))
 	d = {} #will be converted to dataframe
 	years = []
 	for i in range(0,9):
@@ -29,11 +34,11 @@ if __name__ == '__main__':
 		#print(exclude)
 		f1 = []
 		for index, year in teamData.iterrows():
-			train_data, train_label = extractData(year["Year1"], exclude)
-			test_data, test_label = extractData(year["Year2"], exclude)
-			clf = svm.SVC()
-			y_pred = clf.fit(train_data,train_label)
-			predictions = clf.predict(test_data)
+			train_data, train_label = extractData(year["Year1"], year["Misc1"], exclude)
+			test_data, test_label = extractData(year["Year2"], year["Misc2"], exclude)
+			gnb = GaussianNB()
+			y_pred = gnb.fit(train_data,train_label)
+			predictions = gnb.predict(test_data)
 			eval= Evaluation(predictions, test_label)
             #print(eval.getAccuracy())
             #print(eval.getPrecision())
@@ -44,6 +49,7 @@ if __name__ == '__main__':
 				d["None"] = f1
 			else:
 				d[exclude] = f1 #f1 scores for each feature for a given year
+
 	table = pd.DataFrame(d)
 
-	table.to_csv('f1_svc1.csv', sep=',', index=False)
+	table.to_csv('f1_gnb1.csv', sep=',', index=False)

@@ -5,9 +5,10 @@ import operator
 
 
 def sortDiff():
-	files = ['../differences_f1_cart.csv', '../differences_f1_gnb.csv', '../differences_f1_svc.csv']
+	# files = ['../differences_f1_cart.csv', '../differences_f1_gnb.csv', '../differences_f1_svc.csv']
+	files = ['../differences_f1_cart.csv', '../differences_f1_gnb.csv']
 	names = ['cart', 'gnb', 'svc']
-	features = {0 : 'FG', 1 : 'FGA', 2 : '3P', 3 : '3PA', 4 : '2P', 5 : '2PA', 6 : 'FT', 7 : 'FTA' , 8 : 'ORB' , 9 : 'DRB', 10 : 'AST', 11: 'STL', 12 : 'BLK', 13 : 'TOV', 14 : 'PF', 15: 'PTS'}
+	features = {0 : 'FG', 1 : 'FGA', 2 : '3P', 3 : '3PA', 4 : '2P', 5 : '2PA', 6 : 'FT', 7 : 'FTA' , 8 : 'ORB' , 9 : 'DRB', 10 : 'AST', 11: 'STL', 12 : 'BLK', 13 : 'TOV', 14 : 'PF', 15: 'PTS', 16:'Age', 17: 'MOV',18:'SOS', 19:'Pace', 20:'Attend./G', 21:'Total Salary'}
 	row_num = 9 #average difference row
 	results = {}
 	n = 0

@@ -23,11 +23,11 @@ def analysis(filename):
 	for i in range(len(lst)):
 		df.iloc[9,i+2] = lst[i]
 	print(df)
-	new_file = "1differences_"+filename
+	new_file = "differences_"+filename
 	df.to_csv(new_file, index= False, float_format='%g')
 	sorted_diffdict = sorted(diffdict.items(), key=operator.itemgetter(1))
 	print(sorted_diffdict)
 
-analysis('f1_cart1.csv')
-#analysis('f1_gnb.csv')
-#analysis('f1_svc.csv')
+# analysis('f1_cart1.csv')
+# analysis('f1_gnb.csv')
+analysis('f1_svc1.csv')
