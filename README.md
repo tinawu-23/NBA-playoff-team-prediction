@@ -10,6 +10,5 @@ The NBA playoffs provide a marker of the best eight teams in each division after
 
 Data Source:
 
-The main source that will be used is NBA Stats (https://stats.nba.com/players/traditional/?sort=PTS&dir=-1). This dataset shows both player and team data, such as points, rebounds, and assists per game as well as other advanced statistics such as clutch wins, fast break points per game, and percentage of points in the paint. Other categories for statistics to be analyzed are by playtype (isolation, post up, etc), hustle, and opponent shooting. Other non-game based statistics used will surround salary cap, draft picks, attendance and other franchise data. Basketball Reference (https://www.basketball-reference.com/contracts/salary-cap-history.html) and ESPN (http://www.espn.com/nba/attendance) will be used for those statistics.
-
+The main source that will be used is Basketball Reference (https://www.basketball-reference.com/contracts/salary-cap-history.html). This dataset shows team data, such as points, rebounds, and assists per game as well as other advanced statistics such as strength of schedule, margin of victory, and salary cap.
 
