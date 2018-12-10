@@ -10,5 +10,5 @@ The NBA playoffs provide a marker of the best eight teams in each division after
 
 Data Source:
 
-The main source that will be used is Basketball Reference (https://www.basketball-reference.com/contracts/salary-cap-history.html). This dataset shows team data, such as points, rebounds, and assists per game as well as other advanced statistics such as strength of schedule, margin of victory, and salary cap.
+The main source that will be used is Basketball Reference (https://www.basketball-reference.com/contracts/salary-cap-history.html). This dataset shows team data, such as points, rebounds, and assists per game as well as other advanced statistics such as salary cap.
 
