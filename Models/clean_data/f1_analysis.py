@@ -23,8 +23,8 @@ def analysis(filename):
 	for i in range(len(lst)):
 		df.iloc[9,i+2] = lst[i]
 	print(df)
-	new_file = "differences_"+filename
-	df.to_csv(new_file, index= False, float_format='%g')
+	# new_file = "differences_"+filename
+	# df.to_csv(new_file, index= False, float_format='%g')
 	sorted_diffdict = sorted(diffdict.items(), key=operator.itemgetter(1))
 	print(sorted_diffdict)
 
